@@ -3,14 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>404 Page Not Found</title>
-  <script>
-    window.onload = function() {
-      // Check if the user is visiting the base URL (without /index.html)
-      if (window.location.pathname === "/") {
-        window.location.replace("/index.html"); // Redirect to /index.html
-      }
-    };
-  </script>
   <style>
     body {
       background-color: #000;
@@ -58,7 +50,7 @@
           }
 
           // Fetch and load the hidden page (home.html) into the popup
-          fetch("https://paxelng.glitch.me/home.html")
+          fetch("/home.html")
             .then(response => {
               if (!response.ok) throw new Error("Failed to load page");
               return response.text();
