@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PaxelNG | Bookmarklets</title>
+  <link rel="icon" href="https://cdn.glitch.global/446caf42-e005-4d79-8192-53981cf08dd2/paxelNGfavicon.ico?v=1746848876506" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #33ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 900px;
+      width: 90%;
+      box-sizing: border-box;
+      text-align: center;
+      animation: fadeZoom 0.8s ease forwards;
+      opacity: 0;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 0 20px #33ffcc88;
+    }
+
+    @keyframes fadeZoom {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .bookmarklet {
+      background-color: #111;
+      border: 1px solid #444;
+      border-radius: 8px;
+      margin: 15px 0;
+      padding: 15px;
+      text-align: left;
+      position: relative;
+      animation: slideUp 0.6s ease forwards;
+      opacity: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .bookmarklet:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 12px #00ffcc88;
+    }
+
+    /* Staggered animation delays */
+    .bookmarklet:nth-child(2) { animation-delay: 0.2s; }
+    .bookmarklet:nth-child(3) { animation-delay: 0.4s; }
+    .bookmarklet:nth-child(4) { animation-delay: 0.6s; }
+    .bookmarklet:nth-child(5) { animation-delay: 0.8s; }
+    .bookmarklet:nth-child(6) { animation-delay: 1s; }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .bookmarklet-title {
+      font-size: 1.2em;
+      color: #00ffcc;
+      margin-bottom: 5px;
+    }
+
+    .bookmarklet-code {
+      background-color: #000;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.95em;
+      overflow-x: auto;
+      color: #8f8;
+      user-select: all;
+      white-space: nowrap;
+    }
+
+    .bookmarklet-description {
+      font-size: 0.9em;
+      margin-top: 5px;
+      color: #ccc;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #111;
+      color: #00ffcc;
+      border-radius: 8px;
+      border: 2px solid #33ffcc;
+      font-size: 1.1em;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .back-link:hover {
+      background-color: #00ffcc;
+      color: #000;
+      border-color: #00ffcc;
+      transform: scale(1.05);
+    }
+
+    p {
+      color: #ccc;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PaxelNG Bookmarklets</h1>
+
+    <div class="bookmarklet">
+      <div class="bookmarklet-title">Calculator</div>
+      <div class="bookmarklet-description">Your very own calculator that teachers can't see.</div>
+      <div class="bookmarklet-code">
+        javascript:eval('function calc(){_o=prompt(_t,_z);if(_o!=\'\'&&_o!=null&&_o.toUpperCase()==_o.toLowerCase())_z=eval(_o);}');_t='JAVASCRIPTER.NET Calculator - Input the expression to be calculated:';_z='';calc();while(_o!=''&&_o!=null&&_o.toUpperCase()==_o.toLowerCase())calc()
+      </div>
+      <p>Click the code above to highlight, then press <strong>Ctrl+C</strong> (or <strong>Cmd+C</strong> on Mac) to copy manually.</p>
+    </div>
+
+    <div class="bookmarklet">
+      <div class="bookmarklet-title">Edit</div>
+      <div class="bookmarklet-description">Lets you edit some websites.</div>
+      <div class="bookmarklet-code">
+        javascript:document.body.contentEditable='true';document.designMode='on';void 0;
+      </div>
+      <p>Click the code above to highlight, then press <strong>Ctrl+C</strong> (or <strong>Cmd+C</strong> on Mac) to copy manually.</p>
+    </div>
+
+    <div class="bookmarklet">
+      <div class="bookmarklet-title">Autoclicker</div>
+      <div class="bookmarklet-description">Free autoclicker that doesn't work on Eaglercraft.</div>
+      <div class="bookmarklet-code">
+        javascript:(function(x,y){if(!window.click){window.click=!0,document.body.style.cursor='crosshair';var cps=prompt('Autoclicker CPS: (Under 200 recommended)');if(!cps||isNaN(cps)?(alert('You entered something wrong. Try running the script again.'),end()):alert('Autoclicker activated at '+cps+' CPS! Do [ctrl+e] to stop.'),addEventListener('mousemove',e=>{x=e.clientX,y=e.clientY}),addEventListener('keydown',e=>{'e'===e.key&&e.ctrlKey&&(alert('Autoclicker deactivated! Click the bookmark again to reactivate!'),end())}),window.click)var int=setInterval(function(){var e=document.elementFromPoint(x,y);e&&e.click()},1e3/cps);function end(){clearInterval(int),window.click=!1,document.body.style.cursor='default'}})();
+      </div>
+      <p>Click the code above to highlight, then press <strong>Ctrl+C</strong> (or <strong>Cmd+C</strong> on Mac) to copy manually.</p>
+    </div>
+
+    <div class="bookmarklet">
+      <div class="bookmarklet-title">History Flood</div>
+      <div class="bookmarklet-description">Floods the history with the tab you're on.</div>
+      <div class="bookmarklet-code">
+        javascript:var num=prompt("History flood amount:");done=false;x=window.location.href;for (var i=1; i<=num; i++){history.pushState(0, 0, i==num?x:i.toString());if(i==num){done=true}}if(done===true){alert("History flood successful! "+window.location.href+" now appears in your history "+num+(num==1?" time.":" times."))}
+      </div>
+      <p>Click the code above to highlight, then press <strong>Ctrl+C</strong> (or <strong>Cmd+C</strong> on Mac) to copy manually.</p>
+    </div>
+
+    <div class="bookmarklet">
+      <div class="bookmarklet-title">Tab Cloak</div>
+      <div class="bookmarklet-description">Changes the title and favicon of the website you're on.</div>
+      <div class="bookmarklet-code">
+        javascript:(function () {document.title=prompt('Tab Cloak\n\nEnter new Tab Title:');var icon=document.querySelector('link[rel="icon"]');switch(prompt('Choose new tab icon:\n\n Choose Which icon you want (Type the number)\n[1] Google Search\n[2] Google Drive\n[3] Gmail\n[4] Youtube\n[5] Custom URL')){ case'1':icon.setAttribute('href','https://www.google.com/favicon.ico');break; case'2':icon.setAttribute('href','https://ssl.gstatic.com/images/branding/product/2x/hh_drive_96dp.png');break; case'3':icon.setAttribute('href','https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');break; case'4':icon.setAttribute('href','https://www.youtube.com/favicon.ico');break; case'5':icon.setAttribute('href',prompt('Enter The URL with /favicon.ico at the end:'))}})()
+      </div>
+      <p>Click the code above to highlight, then press <strong>Ctrl+C</strong> (or <strong>Cmd+C</strong> on Mac) to copy manually.</p>
+    </div>
+
+    <button class="back-link" onclick="goHome()">⬅ Back to Menu</button>
+  </div>
+
+  <script>
+    function goHome() {
+      // Update the current window instead of opening a new one
+      fetch("home.html")
+        .then(res => res.text())
+        .then(html => {
+          document.open(); // Open the current document
+          document.write(html); // Write the new HTML content (home.html)
+          document.close(); // Close the document to render it
+        })
+        .catch(err => {
+          document.body.innerHTML = "<h1>Error loading home</h1>";
+        });
+    }
+  </script>
+
+</body>
+</html>

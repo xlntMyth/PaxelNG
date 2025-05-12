@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 Page Not Found</title>
+  <script>
+    window.onload = function() {
+      // Check if the user is visiting the base URL (without /index.html)
+      if (window.location.pathname === "/") {
+        window.location.replace("/index.html"); // Redirect to /index.html
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #hint {
+      opacity: 0.1;
+      font-size: 0.9em;
+      position: absolute;
+      bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>404 Page Not Found</div>
+  <div id="hint">(Hint: type something...)</div>
+
+  <script>
+    const passcode = "letmein"; // The secret code to unlock
+    let buffer = ""; // Buffer to collect the keys pressed
+
+    // Listen for keydown events to capture the passcode input
+    document.addEventListener("keydown", (e) => {
+      // Only accept alphabetic characters and ignore others
+      if (e.key.length === 1 && /[a-z]/i.test(e.key)) {
+        buffer += e.key.toLowerCase(); // Add the key to the buffer
+
+        // If the buffer is longer than the passcode, trim it to match the passcode length
+        if (buffer.length > passcode.length) {
+          buffer = buffer.slice(-passcode.length);
+        }
+
+        // Check if the entered code matches the passcode
+        if (buffer === passcode) {
+          const popup = window.open("about:blank", "_blank");
+          if (!popup) {
+            alert("Popup blocked. Please allow popups for this site.");
+            return;
+          }
+
+          // Fetch and load the hidden page (home.html) into the popup
+          fetch("https://paxelng.glitch.me/home.html")
+            .then(response => {
+              if (!response.ok) throw new Error("Failed to load page");
+              return response.text();
+            })
+            .then(html => {
+              popup.document.open();
+              popup.document.write(html);
+              popup.document.close();
+            })
+            .catch(err => {
+              popup.document.body.innerHTML = `<pre style="color: red;">Error: ${err.message}</pre>`;
+            });
+
+          // Replace the current page content with a "deleted" message
+          document.body.innerHTML = "<h1>The page is now deleted.</h1>";
+
+          // Try to close the tab (works only if the tab was opened by JavaScript)
+          setTimeout(() => {
+            window.close();
+            // In case `window.close` doesn't work, we can redirect it
+            window.location.replace("https://google.com/");
+          }, 1000); // Optional: Wait 1 second before closing or redirecting
+        }
+      }
+    });
+  </script>
+</body>
+</html>

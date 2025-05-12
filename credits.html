@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaxelNG | Credits</title>
+  <link rel="icon" href="https://cdn.glitch.global/446caf42-e005-4d79-8192-53981cf08dd2/paxelNGfavicon.ico?v=1746848876506" type="image/x-icon">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #33ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .credits-list {
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      background: #111;
+      color: #33ffcc;
+      border: 1px solid #33ffcc;
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background: #33ffcc;
+      color: #000;
+    }
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #111;
+      color: #00ffcc;
+      border-radius: 8px;
+      border: 2px solid #33ffcc;
+      font-size: 1.1em;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .back-link:hover {
+      background-color: #00ffcc;
+      color: #000;
+      border-color: #00ffcc;
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Credits</h1>
+  <div class="credits-list">
+    <p>Developed by: GravastarOnTop_</p>
+    <p>Inspired by Luckas Oleksyuk, who also created the cloaks.</p>
+    <p>Lucas' website: <a href="https://0bsidian.pages.dev/home" target="_blank">0bsidian.pages.dev</a></p>
+    <p>My proxy link1: <a href="https://sigmaboy.skibiditoi.lat/" target="_blank">sigmaboy.skibiditoi.lat</a></p>
+    <p>My proxy link2: <a href="https://fanum.tax.skibiditoi.lat/" target="_blank">fanum.tax.skibiditoi.lat</a></p>
+  </div>
+
+  <button class="back-link" onclick="goHome()">⬅ Back to Menu</button>
+
+  <script>
+    function goHome() {
+      const newTab = window.open("about:blank", "_blank");
+      if (!newTab) {
+        alert("Popup blocked. Please allow popups for this site.");
+        return;
+      }
+
+      fetch("home.html")
+        .then(res => res.text())
+        .then(html => {
+          newTab.document.open();
+          newTab.document.write(html);
+          newTab.document.close();
+          window.close(); // Close current tab after opening home
+        })
+        .catch(err => {
+          newTab.document.body.innerHTML = "<h1>Error loading home</h1>";
+        });
+    }
+  </script>
+
+</body>
+</html>

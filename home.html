@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PaxelNG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
+    <script>
+    window.onload = function() {
+      // Check if the user is visiting the base URL (without /index.html)
+      if (window.location.pathname === "/home.html") {
+        window.location.replace("/index.html"); // Redirect to /index.html
+      }
+    };
+  </script>
+  
+    <script>
+    // 🚫 Block direct access (require opened from launcher)
+    if (!window.opener || window.opener === window) {
+      document.body.innerHTML = "<h1 style='color:red; text-align:center; font-family: monospace;'>Access Denied</h1><p style='text-align:center;'>This page must be opened via the secure launcher.</p>";
+      throw new Error("Access Denied: Not a secure popup.");
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #33ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2em;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      letter-spacing: 4px;
+      text-shadow: 0 0 8px #33ffcc;
+      margin-bottom: 2em;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .nav-button {
+      background-color: transparent;
+      border: 2px solid #00ffee;
+      color: #00ffee;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #00ffee;
+      color: #000;
+      box-shadow: 0 0 10px #00ffee;
+    }
+
+    footer {
+      margin-top: 4em;
+      font-size: 0.8em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>PaxelNG</h1>
+  <div class="button-container">
+    <button class="nav-button" onclick="navigate('cloaks.html')">Cloaks</button>
+    <button class="nav-button" onclick="navigate('eaglerxclients.html')">EaglerXClients</button>
+    <button class="nav-button" onclick="navigate('gxmes.html')">Gxmes</button>
+    <button class="nav-button" onclick="navigate('apps.html')">Apps</button>
+    <button class="nav-button" onclick="navigate('bookmarklets.html')">Bookmarklets</button>
+    <button class="nav-button" onclick="navigate('credits.html')">Credits</button>
+  </div>
+  <footer>© 2025 PaxelNG | Secure. Private. Undetectable.</footer>
+
+  <script>
+    function navigate(url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .catch(err => {
+          document.body.innerHTML = "<h1 style='color:red;'>Failed to load page.</h1>";
+        });
+    }
+  </script>
+</body>
+</html>

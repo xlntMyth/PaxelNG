@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EaglerX Clients | PaxelNG</title>
+  <link rel="icon" href="https://cdn.glitch.global/446caf42-e005-4d79-8192-53981cf08dd2/paxelNGfavicon.ico?v=1746848876506" type="image/x-icon">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0a0a0a;
+      color: #33ffcc;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 1.1em;
+      margin-bottom: 25px;
+      color: #66ffe0;
+    }
+    h3 {
+      background: #222;
+      padding: 10px 16px;
+      margin: 12px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background 0.3s;
+      user-select: none;
+    }
+    h3:hover {
+      background: #333;
+    }
+    h3::before {
+      content: '▶';
+      display: inline-block;
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+    h3.open::before {
+      transform: rotate(90deg);
+      content: '▼';
+    }
+    .category-content {
+      display: none;
+      margin-bottom: 20px;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    .menu-button {
+      display: block;
+      background: #000;
+      border: 1px solid #33ffcc;
+      padding: 10px 15px;
+      margin: 8px 0;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #33ffcc;
+      text-align: center;
+      transition: background 0.3s, transform 0.2s;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .menu-button.show {
+      animation: slideIn 0.3s ease forwards;
+    }
+    .menu-button:hover {
+      background: #111;
+      transform: scale(1.02);
+    }
+    .menu-button:active {
+      transform: scale(0.98);
+    }
+
+    .back-link {
+      margin-top: 30px;
+      background-color: #111;
+      color: #33ffcc;
+      border: 2px solid #33ffcc;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .back-link:hover {
+      background-color: #222;
+      transform: scale(1.05);
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    noscript {
+      color: #ff6666;
+      background: #220000;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>EaglerX Clients</h1>
+    <div class="subtitle">Hidden EaglerX Minecraft Clients for School (via PaxelNG)</div>
+
+    <h3 onclick="toggleCategory('category-1-12', this)">1.12 Clients</h3>
+    <div id="category-1-12" class="category-content">
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.12/Eaglercraft_1.12_Offline_en_US+(1).html')">Eaglercraft 1.12</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.12/PixelClient+1.12.2+JS+Offline+(1).html')">PixelClient 1.12.2</a>
+    </div>
+
+    <h3 onclick="toggleCategory('category-1-8', this)">1.8 Clients</h3>
+    <div id="category-1-8" class="category-content">
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/Resent-4.0-Patch-4-Signed.html')">Resent 4.0</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/PixelClient+1.8.8+JS+Offline+(1).html')">PixelClient 1.8.8</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/DragonX+V1.html')">DragonX V1</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/DragonX+V2+Premium.html')">DragonX V2 Premium</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/DragonX+V3+Client+(1).html')">DragonX V3</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/DragonX+V4.html')">DragonX V4</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/DragonXLite.html')">DragonXLite</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/DragonXV5.html')">DragonXV5</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/MeteorX.html')">MeteorX</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/PiClient.html')">PiClient</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/UwU-client-b2.html')">UwU-client-b2</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/v3b12.html')">Justin v3b12</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/v3b13.html')">Justin v3b13</a>
+      <a class="menu-button" onclick="openInAboutBlank('https://0bsidian.s3.us-east-2.amazonaws.com/1.8/WurstX.html')">WurstX</a>
+    </div>
+
+    <button class="back-link" onclick="goHome()">⬅ Back to Menu</button>
+  </div>
+
+  <noscript>
+    JavaScript is required to access the client viewer. Please enable it in your browser settings.
+  </noscript>
+
+  <script>
+    function toggleCategory(id, header) {
+      const content = document.getElementById(id);
+      const isVisible = content.style.display === 'block';
+      document.querySelectorAll('.category-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('h3').forEach(el => el.classList.remove('open'));
+      if (!isVisible) {
+        content.style.display = 'block';
+        header.classList.add('open');
+        const buttons = content.querySelectorAll('.menu-button');
+        buttons.forEach((btn, index) => {
+          btn.classList.remove('show');
+          void btn.offsetHeight;
+          setTimeout(() => {
+            btn.classList.add('show');
+          }, 100 * index);
+        });
+      }
+    }
+
+    function openInAboutBlank(url) {
+      const newWindow = window.open();
+      if (newWindow) {
+        newWindow.document.write('<iframe src="' + url + '" frameborder="0" style="width:100%; height:100%; border:none;"></iframe>');
+        newWindow.document.title = "Client Viewer";
+      } else {
+        alert("Popup blocked. Please allow popups for this site.");
+      }
+    }
+
+        function goHome() {
+      // Update the current window instead of opening a new one
+      fetch("home.html")
+        .then(res => res.text())
+        .then(html => {
+          document.open(); // Open the current document
+          document.write(html); // Write the new HTML content (home.html)
+          document.close(); // Close the document to render it
+        })
+        .catch(err => {
+          document.body.innerHTML = "<h1>Error loading home</h1>";
+        });
+    }
+  </script>
+</body>
+</html>

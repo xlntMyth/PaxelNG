@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>‎</title>
+    <link rel="icon" href="https://cdn.glitch.global/446caf42-e005-4d79-8192-53981cf08dd2/paxelNGfavicon.ico?v=1746848876506" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+          background-color: #0a0a0a;
+          color: #33ffcc;
+          font-family: 'Courier New', Courier, monospace;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          margin: 0;
+          text-align: center;
+        }
+        .container {
+          background-color: rgba(0, 0, 0, 0.75);
+          padding: 30px;
+          border-radius: 10px;
+          width: 90%;
+          max-width: 600px;
+          text-align: center;
+          box-shadow: 0 0 20px #00ffee30;
+        }
+
+        h2 {
+          font-size: 2.5em;
+          margin-bottom: 20px;
+          letter-spacing: 2px;
+          text-shadow: 0 0 8px #33ffcc;
+        }
+
+        .note {
+          font-size: 0.9em;
+          color: #d3d3d3;
+          margin-bottom: 25px;
+        }
+
+        .form-group {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 12px 0;
+        }
+
+        label {
+          width: 140px;
+          text-align: right;
+          margin-right: 10px;
+          font-size: 1.1em;
+        }
+
+        input {
+          flex: 1;
+          max-width: 300px;
+          padding: 10px;
+          background-color: #1c1c1c;
+          border: 1px solid #33ffcc80;
+          color: #33ffcc;
+          border-radius: 4px;
+        }
+
+        button, .menu-button {
+          margin-top: 20px;
+          padding: 12px 24px;
+          background-color: transparent;
+          border: 2px solid #33ffcc;
+          color: #33ffcc;
+          font-size: 1.1em;
+          cursor: pointer;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          display: inline-block;
+        }
+
+        button:hover, .menu-button:hover {
+          background-color: #33ffcc;
+          color: #000;
+          box-shadow: 0 0 10px #33ffcc;
+        }
+
+        iframe {
+          width: 100vw;
+          height: 100vh;
+          border: none;
+        }
+
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #111;
+            color: #00ffcc;
+            border-radius: 8px;
+            border: 2px solid #33ffcc;
+            font-size: 1.1em;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            background-color: #00ffcc;
+            color: #000;
+            border-color: #00ffcc;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>PaxelNG Cloaks</h2>
+        <div class="note">This cloaker may not work with Google services like YouTube and Gmail</div>
+        <div class="form-group">
+            <label for="urlInput">Website URL:</label>
+            <input type="text" id="urlInput" placeholder="ex: https://astraclient.com/play">
+        </div>
+        <div class="form-group">
+            <label for="tabNameInput">Tab Name:</label>
+            <input type="text" id="tabNameInput" placeholder="ex: astraclient">
+        </div>
+        <div class="form-group">
+            <label for="iconInput">Favicon URL:</label>
+            <input type="text" id="iconInput" placeholder="ex: https://google.com/googlefavicon">
+        </div>
+        <button onclick="openInAboutBlank()">Open</button>
+        <button class="back-link" onclick="goHome()">⬅ Back to Menu</button>
+    </div>
+
+    <script>
+        function goHome() {
+            const newTab = window.open("about:blank", "_blank");
+            if (!newTab) {
+                alert("Popup blocked. Please allow popups for this site.");
+                return;
+            }
+
+            fetch("home.html")
+                .then(res => res.text())
+                .then(html => {
+                    newTab.document.open();
+                    newTab.document.write(html);
+                    newTab.document.close();
+                    window.close(); // Close current tab after opening home
+                })
+                .catch(err => {
+                    newTab.document.body.innerHTML = "<h1>Error loading home</h1>";
+                });
+        }
+
+        window.onload = function() {
+            function isValidUrl(string) {
+                const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/i;
+                return urlPattern.test(string);
+            }
+
+            function isValidIconUrl(string) {
+                if (!string) return true;
+                const iconPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?\.(ico|png|jpg|jpeg|svg)$/i;
+                return iconPattern.test(string);
+            }
+
+            function openInAboutBlank() {
+                const urlInput = document.getElementById('urlInput');
+                const tabNameInput = document.getElementById('tabNameInput');
+                const iconInput = document.getElementById('iconInput');
+
+                if (!urlInput || !tabNameInput || !iconInput) {
+                    alert('One or more input elements are missing. Please check the page.');
+                    return;
+                }
+
+                const url = urlInput.value.trim();
+                const tabName = tabNameInput.value.trim();
+                const iconUrl = iconInput.value.trim();
+
+                if (url && isValidUrl(url)) {
+                    if (iconUrl && !isValidIconUrl(iconUrl)) {
+                        alert('Please enter a valid icon URL (ex: https://google.com/googlefavicon)');
+                        return;
+                    }
+
+                    const formattedUrl = url.match(/^https?:\/\//) ? url : 'https://' + url;
+                    const formattedIconUrl = iconUrl.match(/^https?:\/\//) ? iconUrl : (iconUrl ? 'https://' + iconUrl : '');
+                    const formattedTabName = tabName || 'Website';
+
+                    const blankWindow = window.open('about:blank', '_blank');
+
+                    if (blankWindow) {
+                        blankWindow.document.write(`
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <title>${formattedTabName}</title>
+                                ${formattedIconUrl ? `<link rel="icon" type="image/x-icon" href="${formattedIconUrl}">` : ''}
+                                <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+                                <style>
+                                    body, html {
+                                        margin: 0;
+                                        height: 100%;
+                                        overflow: hidden;
+                                    }
+                                    #loadingOverlay {
+                                        position: fixed;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        background-size: cover;
+                                        background-position: center;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        background-color: #000;
+                                        color: #0f0;
+                                        font-family: monospace;
+                                        text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000;
+                                        transition: opacity 0.5s ease;
+                                        z-index: 1000;
+                                    }
+                                    iframe {
+                                        width: 100vw;
+                                        height: 100vh;
+                                        border: none;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <div id="loadingOverlay">Loading ${formattedUrl}...</div>
+                                <iframe id="contentFrame" src="${formattedUrl}" allowfullscreen></iframe>
+                            </body>
+                            </html>
+                        `);
+                        blankWindow.document.close();
+
+                        // Handle the iframe load event
+                        const iframe = blankWindow.document.getElementById('contentFrame');
+                        const loadingOverlay = blankWindow.document.getElementById('loadingOverlay');
+
+                        if (iframe && loadingOverlay) {
+                            iframe.onload = function() {
+                                loadingOverlay.style.opacity = '0';
+                                setTimeout(() => {
+                                    loadingOverlay.style.display = 'none';
+                                    iframe.classList.add('loaded');
+                                }, 500); 
+                            };
+                            iframe.onerror = function() {
+                                alert('Failed to load the content. Please try again.');
+                                loadingOverlay.style.opacity = '0';
+                                setTimeout(() => {
+                                    loadingOverlay.style.display = 'none';
+                                }, 500);
+                            };
+                        }
+                    } else {
+                        alert('Popup blocked. Please allow popups for this site.');
+                    }
+                } else {
+                    alert('Please enter a valid URL (ex: https://google.com/googlefavicon).');
+                }
+            }
+
+            window.openInAboutBlank = openInAboutBlank;
+        };
+    </script>
+</body>
+</html>
